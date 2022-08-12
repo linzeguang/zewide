@@ -16,12 +16,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -29,11 +29,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Install package with yarn
-        run: rm -rf node_modules && yarn install --frozen-lockfile
+      - name: Install package
+        run: rm -rf node_modules && npm install
 
       - name: Build and deploy with gh-pages
-        run: yarn deploy
+        uses: peaceiris/actions-gh-pages@v3
+        run: npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GITHUB_REPOSITORY: zewide
