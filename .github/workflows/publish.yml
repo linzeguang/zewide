@@ -33,6 +33,4 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 跟前面步骤中的 NPM_AUTH_TOKEN 保持一致
 
         with:
-          default_branch: 'master'
-          user_name: ${{ secrets.MY_USER_NAME }}
-          user_email: ${{ secrets.MY_USER_EMAIL }}
+          default_branch: 'main'
