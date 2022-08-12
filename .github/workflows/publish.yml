@@ -24,11 +24,6 @@ jobs:
           yarn
           yarn build
 
-      - name: Update version
-        run: |
-          npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
-          npm version patch
-
       # 部署到 GitHub pages
       - name: Publish to the npm registry
         uses: primer/publish@3.0.0
