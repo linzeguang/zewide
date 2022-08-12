@@ -1,20 +1,22 @@
 {
-  "private": true,
+  "private": false,
   "name": "zewide",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "dumi dev",
-    "docs:build": "dumi build",
-    "docs:deploy": "gh-pages -d docs-dist",
-    "build": "father build",
-    "deploy": "npm run docs:build && npm run docs:deploy",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "prepublishOnly": "npm run build"
+  "version": "0.0.1",
+  "description": "A library of react",
+  "author": "linzeguang",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "Library"
+  ],
+  "homepage": "https://github.com/linzeguang/zewide",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linzeguang/zewide.git"
   },
-  "files": [
-    "dist"
+   "files": [
+    "docs-dist",
+    "es"
   ],
   "module": "dist/esm/index.js",
   "typings": "dist/esm/index.d.ts",
@@ -28,6 +30,20 @@
     "*.ts?(x)": [
       "prettier --parser=typescript --write"
     ]
+  },
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
   },
   "dependencies": {
     "react": "^18.0.0"
