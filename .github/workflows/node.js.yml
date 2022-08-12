@@ -20,7 +20,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
@@ -30,11 +30,11 @@ jobs:
           cache: 'npm'
 
       - name: Install package
-        run: rm -rf node_modules && npm install
+      - run: rm -rf node_modules && npm install
 
       - name: Build and deploy with gh-pages
         uses: peaceiris/actions-gh-pages@v3
-        run: npm run deploy
+      - run: npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GITHUB_REPOSITORY: zewide
