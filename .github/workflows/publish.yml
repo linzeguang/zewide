@@ -19,9 +19,9 @@ jobs:
 
       # 打包构建
       - name: Install and Build
-      - run: npm install # 安装依赖
-      - run: npm version patch # 更新版本号
-      - run: npm run build # 打包
+        run: npm install # 安装依赖
+        run: npm version patch # 更新版本号
+        run: npm run build # 打包
 
       # 部署到 GitHub pages
       - name: Publish to the npm registry
