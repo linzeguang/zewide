@@ -26,12 +26,16 @@ jobs:
 
       - name: Publish to NPM
         run: |
+          git config --global user.name $USER_NAME
+          git config --global user.email $USER_EMAIL
           npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
           npm version patch
           npm publish
 
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          USER_NAME: ${{ secrets.MY_USER_NAME }}
+          USER_EMAIL: ${{ secrets.MY_USER_EMAIL }}
 
       # # 部署到 GitHub pages
       # - name: Publish to the npm registry
