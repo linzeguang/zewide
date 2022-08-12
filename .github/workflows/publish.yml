@@ -25,7 +25,9 @@ jobs:
           yarn build
 
       - name: Update version
-        run: npm version patch
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+          npm version patch
 
       # 部署到 GitHub pages
       - name: Publish to the npm registry
