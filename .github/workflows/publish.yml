@@ -5,7 +5,7 @@ on:
     branches: [main] # master 分支有 push 时触发
     paths-ignore: # 下列文件的变更不触发部署，可以自行添加
       - README.md
-      - .github/workflows/deploy.yml
+      - .github/workflows/*
 
 jobs:
   publish:
@@ -18,12 +18,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # 更新版本号并打包构建
+      # 打包构建
       - name: Install and Build
         run: |
           yarn
           yarn build
 
+      # 更新版本号并发布到NPM
       - name: Publish to NPM
         run: |
           git config --global user.name $USER_NAME
@@ -36,14 +37,3 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           USER_NAME: ${{ secrets.MY_USER_NAME }}
           USER_EMAIL: ${{ secrets.MY_USER_EMAIL }}
-
-      # # 部署到 GitHub pages
-      # - name: Publish to the npm registry
-      #   uses: primer/publish@3.0.0
-
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      #     NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 跟前面步骤中的 NPM_AUTH_TOKEN 保持一致
-
-      #   with:
-      #     default_branch: 'main'
