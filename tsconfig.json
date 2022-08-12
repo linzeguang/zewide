@@ -1,13 +1,30 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "esModuleInterop": true,
-    "types": ["jest"],
-    "strict": true,
-    "skipLibCheck": true,
-    "declaration": true
-  }
+    /*语言与环境*/
+    "target": "es2016" /*为发出的 JavaScript 设置 JavaScript 语言版本并包含兼容的库声明。*/,
+    "jsx": "react" /*指定生成的 JSX 代码。*/,
+
+    /* Modules */
+    "module": "ESNext" /*指定生成什么模块代码。*/,
+    "moduleResolution": "node" /*指定 TypeScript 如何从给定的模块说明符中查找文件。*/,
+
+    /* Emit */
+    "declaration": true /*从项目中的 TypeScript 和 JavaScript 文件生成 .d.ts 文件。*/,
+    "emitDeclarationOnly": true /*只输出 d.ts 文件，不输出 JavaScript 文件。*/,
+    "sourceMap": true /*为发出的 JavaScript 文件创建源映射文件。*/,
+    "outDir": "dist" /*为所有发出的文件指定一个输出文件夹。*/,
+    "declarationDir": "types" /*指定生成的声明文件的输出目录。*/,
+
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true /*当模块没有默认导出时，允许“从 y 导入 x”。*/,
+    "esModuleInterop": true /*发出额外的 JavaScript 以简化对导入 CommonJS 模块的支持。这会启用 `allowSyntheticDefaultImports` 以实现类型兼容性。*/,
+    "forceConsistentCasingInFileNames": true /*确保导入时的大小写正确。*/,
+
+    /* Type Checking */
+    "strict": true /*启用所有严格的类型检查选项。*/,
+
+    /* Completeness */
+    "skipLibCheck": true /*跳过类型检查所有 .d.ts 文件。*/
+  },
+  "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx"]
 }
