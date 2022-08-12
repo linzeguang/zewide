@@ -5,6 +5,7 @@ on:
     branches: [main] # master 分支有 push 时触发
     paths-ignore: # 下列文件的变更不触发部署，可以自行添加
       - README.md
+      - .github/workflows/deploy.yml
 
 jobs:
   publish:
@@ -20,9 +21,11 @@ jobs:
       # 更新版本号并打包构建
       - name: Install and Build
         run: |
-          npm install
-          npm version patch
-          npm run build
+          yarn
+          yarn build
+
+      - name: Update version
+        run: npm version patch
 
       # 部署到 GitHub pages
       - name: Publish to the npm registry
