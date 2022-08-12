@@ -7,8 +7,13 @@ on:
       - README.md
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
+
+    name: 'publish npm'
+
+    environment: npm
+
     steps:
       # 下载源码
       # 这一步就是检出你的仓库并下载里面的代码到runner中,actions/checkout@v2是官方自己造的轮子，直接拿来用就行
@@ -24,10 +29,12 @@ jobs:
       - run: yarn build # 打包
 
       # 部署到 GitHub pages
-      - name: Publish
-        uses: actions/setup-node@master
-        with:
-          node-version: '14.x'
-      - run: npm version patch # 更改小版本号
-      - run: npm publish # 发布
+      - name: Publish to the npm registry
+        uses: primer/publish@3.0.0
 
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 跟前面步骤中的 NPM_AUTH_TOKEN 保持一致
+
+        with:
+          default_branch: 'master'
