@@ -24,13 +24,22 @@ jobs:
           yarn
           yarn build
 
-      # 部署到 GitHub pages
-      - name: Publish to the npm registry
-        uses: primer/publish@3.0.0
+      - name: Publish to NPM
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm version patch
+          npm publish
 
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 跟前面步骤中的 NPM_AUTH_TOKEN 保持一致
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        with:
-          default_branch: 'main'
+      # # 部署到 GitHub pages
+      # - name: Publish to the npm registry
+      #   uses: primer/publish@3.0.0
+
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      #     NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 跟前面步骤中的 NPM_AUTH_TOKEN 保持一致
+
+      #   with:
+      #     default_branch: 'main'
