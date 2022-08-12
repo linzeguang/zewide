@@ -32,6 +32,7 @@ jobs:
           npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
           npm version patch
           npm publish
+          git push --all
 
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
