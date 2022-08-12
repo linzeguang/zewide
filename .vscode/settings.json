@@ -1,8 +1,0 @@
-{
-  "fileheader.configObj": {
-    "autoAdd": false
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  }
-}
