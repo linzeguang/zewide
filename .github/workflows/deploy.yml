@@ -16,13 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # # 打包构建
-      # - name: Build
-      #   uses: actions/setup-node@master
-      #   with:
-      #     node-version: '14.x'
-      # - run: yarn install # 安装依赖
-      # - run: yarn docs # 打包
+      # 打包构建
+      - name: Build
+        uses: actions/setup-node@master
+        with:
+          node-version: '14.x'
+      - run: yarn install # 安装依赖
+      - run: yarn build:docs # 打包
 
       # 部署到 GitHub pages
       - name: Deploy

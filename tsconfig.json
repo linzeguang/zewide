@@ -26,5 +26,5 @@
     /* Completeness */
     "skipLibCheck": true /*跳过类型检查所有 .d.ts 文件。*/
   },
-  "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx"]
+  "exclude": ["dist", "docs", "node_modules"]
 }
