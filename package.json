@@ -1,8 +1,12 @@
 {
   "name": "zewide",
   "version": "0.0.10",
-  "description": "",
-  "keywords": [],
+  "description": "小前端的组件库 + 方法库",
+  "keywords": [
+    "utils",
+    "component",
+    "web3"
+  ],
   "homepage": "https://github.com/linzeguang/zewide#readme",
   "bugs": {
     "url": "https://github.com/linzeguang/zewide/issues"
@@ -13,16 +17,24 @@
   },
   "license": "MIT",
   "author": "linzeguang",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    }
+  },
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
-  "directories": {
-    "doc": "docs"
-  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsup",
-    "docs": "docsify serve ./docs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup"
   },
   "dependencies": {
     "bignumber.js": "^9.1.0",
@@ -34,7 +46,6 @@
     "@types/react": "^18.0.17",
     "@types/styled-components": "^5.1.26",
     "@umijs/fabric": "^3.0.0",
-    "docsify-cli": "^4.4.4",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4"
