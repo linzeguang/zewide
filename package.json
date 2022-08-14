@@ -2,6 +2,7 @@
   "name": "zewide",
   "version": "0.0.9",
   "description": "",
+  "keywords": [],
   "homepage": "https://github.com/linzeguang/zewide#readme",
   "bugs": {
     "url": "https://github.com/linzeguang/zewide/issues"
@@ -10,35 +11,36 @@
     "type": "git",
     "url": "git+https://github.com/linzeguang/zewide.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "linzeguang",
-  "main": "dist/cjs/index.js",
+  "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
-    "build": "rollup -c"
+    "build": "tsup",
+    "docs": "docsify serve ./docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.1.0",
+    "react": "^18.2.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.4",
+    "@swc/core": "^1.2.230",
     "@types/react": "^18.0.17",
     "@types/styled-components": "^5.1.26",
     "@umijs/fabric": "^3.0.0",
+    "docsify-cli": "^4.4.4",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "react": "^18.2.0",
-    "rollup": "^2.77.3",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2",
-    "styled-components": "^5.3.5",
-    "tslib": "^2.4.0",
+    "tsup": "^6.2.2",
     "typescript": "^4.7.4"
   },
   "peerDependencies": {
-    "react": ">=18.0.0"
+    "react": "^16.14 || ^17 || ^18",
+    "typescript": "^4.4"
   }
 }
