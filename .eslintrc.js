@@ -11,14 +11,15 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/*.js', '**/*.ts', '**/*.tsx'],
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
       rules: {
         'simple-import-sort/imports': [
           'error',
           {
             groups: [
               // `react` first, `next` second, then packages starting with a character
-              ['^react$', '^[a-z]'],
+              ['^react$', '^react*'],
+              ['^[a-z]'],
               // Packages starting with `@`
               ['^@'],
               // Packages starting with `~`
