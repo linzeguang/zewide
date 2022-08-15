@@ -5,7 +5,4 @@ import type { BaseProps } from '../types';
 
 export type BoxProps = BaseProps;
 
-export const Box = styled(motion.div)<BoxProps>(({ theme }) => {
-  console.log(theme);
-  return ``;
-});
+export const Box = styled(motion.div)<BoxProps>``;

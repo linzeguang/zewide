@@ -6,8 +6,10 @@
  * @Description:
  */
 import React from "react";
+
 import styled from "styled-components";
-import { InputProps } from "./types";
+
+import type { InputProps } from "./types";
 
 const StyledInput = styled.input<InputProps>`
   height: 40px;
@@ -73,7 +75,7 @@ export const Input: React.FC<InputProps> = ({
         success={success}
         placeholder={placeholder}
         {...props}
-      ></StyledInput>
+       />
       <StyledMessage>
         <StyledText error={error}>{message}</StyledText>
       </StyledMessage>

@@ -5,7 +5,7 @@
  * @LastEditors: linzeguang
  * @Description:
  */
-import { ChangeEventHandler } from "react";
+import type { ChangeEventHandler } from "react";
 
 export interface InputProps {
   id?: string;

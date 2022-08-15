@@ -17,15 +17,8 @@
   },
   "license": "MIT",
   "author": "linzeguang",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/index.js"
-    }
-  },
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -34,10 +27,14 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "rm -rf ./dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist",
     "build:docs": "build-storybook -o docs",
     "docs": "start-storybook -p 6006",
-    "start": "yarn docs"
+    "format": "yarn lint && yarn prettier",
+    "lint": "npx eslint src --cache --fix",
+    "prettier": "npx prettier src --check --write",
+    "start": "yarn docs",
+    "watch": "rollup -c -w"
   },
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
@@ -58,6 +55,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@rollup/plugin-url": "^7.0.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -66,7 +65,6 @@
     "@storybook/manager-webpack4": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
-    "@swc/core": "^1.2.230",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
@@ -74,13 +72,7 @@
     "@umijs/fabric": "^3.0.0",
     "babel-loader": "^8.2.5",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "themeprovider-storybook": "^1.8.0",
-    "tsup": "^6.2.2",
+    "rollup": "^2.78.0",
     "typescript": "^4.7.4"
-  },
-  "peerDependencies": {
-    "react": "^17 || ^18",
-    "react-dom": "^17 || ^18",
-    "typescript": "^4.4"
   }
 }

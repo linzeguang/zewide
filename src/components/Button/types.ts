@@ -5,7 +5,7 @@
  * @LastEditors: linzeguang
  * @Description:
  */
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 
 export interface ButtonProps {
   text?: string;
