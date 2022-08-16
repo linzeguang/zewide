@@ -28,12 +28,12 @@
   ],
   "scripts": {
     "build": "rm -rf ./dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist",
+    "build:docs": "build-storybook -o docs",
+    "docs": "start-storybook -p 6006",
     "format": "yarn lint && yarn prettier",
     "lint": "npx eslint src --cache --fix",
     "prettier": "npx prettier src --check --write",
-    "watch": "rollup -c -w",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "watch": "rollup -c -w"
   },
   "dependencies": {
     "@ant-design/colors": "^6.0.0",

@@ -14,11 +14,12 @@ export interface ButtonProps extends BaseProps, TypographyProps {
   variant?: 'default' | 'ghost' | 'dashed' | 'text';
 }
 
-const BaseButton = styled(motion.button)<ButtonProps>(({ circle, variant }) => [
+const BaseButton = styled(motion.button)<ButtonProps>(({ circle, variant, theme }) => [
   baseCss,
   css`
     border-width: 1px;
     border-color: #000;
+    transition-duration: ${theme.duration};
   `,
   circle &&
     css`
