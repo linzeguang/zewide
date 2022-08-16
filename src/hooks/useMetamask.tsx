@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import MetaMaskOnboarding from '@metamask/onboarding';
-import type { MetaMaskInpageProvider } from '@metamask/providers';
 
-import { getEthereum } from '../connection';
+import { getIsMetaMask } from '../connection';
 
 export default function useMetamask() {
   // 判断是否metamask是否已安装
   const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState<boolean>();
-  const [provider, setProvider] = useState<MetaMaskInpageProvider>();
   const onboarding = useRef<MetaMaskOnboarding>();
 
   /**
@@ -24,14 +22,10 @@ export default function useMetamask() {
       return;
     }
 
-    const _provider = await getEthereum();
-
-    if (_provider && _provider.isMetaMask) {
+    if (getIsMetaMask()) {
       setIsMetaMaskInstalled(true);
-      setProvider(_provider);
     } else {
       setIsMetaMaskInstalled(false);
-      setProvider(undefined);
     }
   }, []);
 
@@ -48,7 +42,6 @@ export default function useMetamask() {
 
   return {
     isMetaMaskInstalled,
-    provider,
     startOnboarding,
   };
 }

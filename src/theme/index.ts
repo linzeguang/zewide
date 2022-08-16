@@ -12,5 +12,5 @@ export interface ZewideTheme {
 }
 
 export { colors } from './colors';
-export { default as defaultTheme } from './default';
+export { default as theme } from './theme';
 export * from './types';

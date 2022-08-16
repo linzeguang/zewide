@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useStorageState } from 'react-storage-hooks';
 
 import type { Connector } from '@web3-react/types';
 
 import type { ConnectionType } from '../connection';
 import { getConnection } from '../connection/utils';
+
+import { useLocalStorage } from './useStorage';
 
 async function connect(connector: Connector) {
   try {
@@ -19,7 +20,7 @@ async function connect(connector: Connector) {
 }
 
 export default function useEagerlyConnect() {
-  const [selectedWallet] = useStorageState<ConnectionType>(localStorage, 'selectedWallet');
+  const [selectedWallet] = useLocalStorage<ConnectionType | null>('selectedWallet', null);
 
   useEffect(() => {
     if (selectedWallet) {

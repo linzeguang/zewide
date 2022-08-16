@@ -1,8 +1,6 @@
-import detectEthereumProvider from '@metamask/detect-provider';
-import type { MetaMaskInpageProvider } from '@metamask/providers';
 import { Connector } from '@web3-react/types';
 
-import { ConnectionType, injectedConnection, walletConnectConnection } from '.';
+import { ConnectionType, injectedConnection, walletConnectConnection } from './connection';
 
 export function getIsInjected(): boolean {
   return Boolean(window.ethereum);
@@ -38,14 +36,4 @@ export function getConnectionName(connectionType: ConnectionType, isMetaMask?: b
     case ConnectionType.WALLET_CONNECT:
       return 'WalletConnect';
   }
-}
-
-export async function getEthereum(): Promise<MetaMaskInpageProvider | null> {
-  const provider = (await detectEthereumProvider({
-    timeout: 1000,
-    mustBeMetaMask: true,
-  })) as MetaMaskInpageProvider;
-
-  if (provider && provider.isMetaMask) return provider;
-  return null;
 }

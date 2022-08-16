@@ -12,15 +12,25 @@ export type MediaQueries = {
 
 export type Spacing = number[];
 
-export type Radii = {};
+export type Radii = {
+  // 圆角
+};
 
-export type Shadows = {};
+export type Shadows = {
+  // 阴影
+};
 
-export type Gradients = {};
+export type Gradients = {
+  // 渐变色
+};
 
-export type BaseColors = {};
+export type BaseColors = {
+  // 基础色
+};
 
-export type AdditionalColors = {};
+export type AdditionalColors = {
+  // 额外颜色
+};
 
 export interface Colors extends BaseColors, AdditionalColors {}
 

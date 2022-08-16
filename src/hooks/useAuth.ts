@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useStorageState } from 'react-storage-hooks';
 
 import { useWeb3React } from '@web3-react/core';
 
@@ -7,13 +6,14 @@ import type { Connection } from '../connection';
 import { ConnectionType, ConnectStatus } from '../connection';
 
 import useMetamask from './useMetamask';
+import { useLocalStorage } from './useStorage';
 
 export default function useAuth() {
   const { isActive, connector } = useWeb3React();
   const { isMetaMaskInstalled, startOnboarding } = useMetamask();
-  const [selectedWallet, setSelectedWallet] = useStorageState<ConnectionType>(
-    localStorage,
+  const [selectedWallet, setSelectedWallet] = useLocalStorage<ConnectionType | null>(
     'selectedWallet',
+    null,
   );
   const [status, setStatus] = useState<ConnectStatus>(ConnectStatus.DISCONNECT);
 
@@ -21,20 +21,16 @@ export default function useAuth() {
     async (connection: Connection) => {
       const { connector: connect, type } = connection;
 
-      switch (type) {
-        case ConnectionType.INJECTED:
-          if (!isMetaMaskInstalled) return startOnboarding();
+      if (type === ConnectionType.INJECTED && !isMetaMaskInstalled) return startOnboarding();
 
-        default:
-          try {
-            setStatus(ConnectStatus.CONNECTING);
-            await connect.activate();
-            setStatus(ConnectStatus.CONNECTED);
-            setSelectedWallet(type);
-          } catch (error) {
-            setStatus(ConnectStatus.DISCONNECT);
-            setSelectedWallet(null);
-          }
+      try {
+        setStatus(ConnectStatus.CONNECTING);
+        await connect.activate();
+        setStatus(ConnectStatus.CONNECTED);
+        setSelectedWallet(type);
+      } catch (error) {
+        setStatus(ConnectStatus.DISCONNECT);
+        setSelectedWallet(null);
       }
     },
     [isMetaMaskInstalled, setSelectedWallet, startOnboarding],

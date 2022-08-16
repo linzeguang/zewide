@@ -8,10 +8,8 @@ import type { Connection } from '../../connection';
 import { connections, getConnectionName } from '../../connection';
 import { useEagerlyConnect } from '../../hooks';
 
-const Web3Provider: React.FC<React.PropsWithChildren> = (props) => {
+export const Web3Provider: React.FC<React.PropsWithChildren> = (props) => {
   useEagerlyConnect();
-
-  const { children, ...rest } = props;
 
   const connectors: [Connector, Web3ReactHooks][] = connections.map(({ hooks, connector }) => [
     connector,
@@ -24,10 +22,8 @@ const Web3Provider: React.FC<React.PropsWithChildren> = (props) => {
   );
 
   return (
-    <Web3ReactProvider connectors={connectors} key={key} {...rest}>
+    <Web3ReactProvider connectors={connectors} key={key}>
       {props.children}
     </Web3ReactProvider>
   );
 };
-
-export default Web3Provider;
