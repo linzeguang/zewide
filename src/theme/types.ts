@@ -26,6 +26,9 @@ export type Gradients = {
 
 export type BaseColors = {
   // 基础色
+  white: string;
+  black: string;
+  grey: string;
 };
 
 export type AdditionalColors = {

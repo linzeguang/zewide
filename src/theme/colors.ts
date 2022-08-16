@@ -1,6 +1,10 @@
 import type { AdditionalColors, BaseColors, Colors } from './types';
 
-export const baseColors: BaseColors = {};
+export const baseColors: BaseColors = {
+  white: '#fff',
+  black: '#000',
+  grey: '#666',
+};
 
 export const additionalColors: AdditionalColors = {};
 

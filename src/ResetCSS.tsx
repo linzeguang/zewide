@@ -69,6 +69,12 @@ const ResetCSS = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  button {
+    padding: 0.5em 1em;
+    border: none;
+    background: none;
+  }
+
   /* Number */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {

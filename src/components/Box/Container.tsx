@@ -1,11 +1,8 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import type { BaseProps } from '../types';
+import { Box } from './Box';
 
-export type ContainerProps = BaseProps;
-
-export const Container = styled(motion.div)<ContainerProps>`
+export const Container = styled(Box)`
   width: 100%;
   max-width: ${({ theme }) => theme.siteWidth};
   margin: 0 auto;
