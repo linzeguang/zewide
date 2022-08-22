@@ -1,16 +1,15 @@
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
 import type { GridProps as GridBoxProps } from 'styled-system';
 import { grid } from 'styled-system';
 
-import type { BaseProps } from '../base';
-import { baseCss } from '../base';
+import styled from '@emotion/styled';
 
-export interface GridProps extends BaseProps, GridBoxProps {}
+import type { BoxProps } from './Box';
+import { Box } from './Box';
 
-export const Grid = styled(motion.div)<GridProps>`
+export interface GridProps extends BoxProps, GridBoxProps {}
+
+export const Grid = styled(Box)<GridProps>`
   display: grid;
 
   ${grid}
-  ${baseCss}
 `;

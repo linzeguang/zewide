@@ -1,21 +1,20 @@
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
 import type { FlexboxProps, GridGapProps } from 'styled-system';
 import { flexbox, gridGap } from 'styled-system';
 
-import type { BaseProps } from '../base';
-import { baseCss } from '../base';
+import styled from '@emotion/styled';
 
-export interface FlexProps extends BaseProps, FlexboxProps, GridGapProps {
+import type { BoxProps } from './Box';
+import { Box } from './Box';
+
+export interface FlexProps extends BoxProps, FlexboxProps, GridGapProps {
   reverse?: boolean;
 }
 
-export const Flex = styled(motion.div)<Omit<FlexProps, 'reverse'>>`
+export const Flex = styled(Box)<Omit<FlexProps, 'reverse'>>`
   display: flex;
 
   ${flexbox}
   ${gridGap}
-  ${baseCss}
 `;
 
 export const FlexRow = styled(Flex)<FlexProps>`

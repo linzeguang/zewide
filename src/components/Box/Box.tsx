@@ -1,11 +1,26 @@
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import type {
+  BackgroundProps,
+  ColorProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+} from 'styled-system';
+import { background, color, layout, position, space } from 'styled-system';
 
-import type { BaseProps } from '../base';
-import { baseCss } from '../base';
+import styled from '@emotion/styled';
 
-export type BoxProps = BaseProps;
+export interface BoxProps
+  extends PositionProps,
+    LayoutProps,
+    SpaceProps,
+    BackgroundProps,
+    ColorProps {}
 
 export const Box = styled(motion.div)<BoxProps>`
-  ${baseCss}
+  ${position}
+  ${layout}
+  ${space}
+  ${background}
+  ${color}
 `;

@@ -1,12 +1,14 @@
-import { ThemeProvider } from 'styled-components';
-import { MotionProvider, ResetCSS, theme, Web3Provider } from '../src';
+import { ThemeProvider } from '@emotion/react';
+import { ModalProvider, MotionProvider, ResetCSS, theme, Web3Provider } from '../src';
 
 const globalDecorator = (StoryFn) => (
   <Web3Provider>
     <ThemeProvider theme={theme}>
       <ResetCSS />
       <MotionProvider>
-        <StoryFn />
+        <ModalProvider>
+          <StoryFn />
+        </ModalProvider>
       </MotionProvider>
     </ThemeProvider>
   </Web3Provider>

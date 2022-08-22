@@ -1,14 +1,15 @@
-import type { Breakpoints, MediaQueries, Radii, Shadows, Spacing, ZIndices } from './types';
+import type { Breakpoints, Colors, MediaQueries, Radii, Shadows, Spacing, ZIndices } from './types';
 
 export interface ZewideTheme {
   siteWidth: number | string;
-  duration: string;
+  duration: number;
   breakpoints: Breakpoints;
   mediaQueries: MediaQueries;
   spacing: Spacing;
   shadows: Shadows;
   radii: Radii;
   zIndices: ZIndices;
+  colors: Colors;
 }
 
 export { colors } from './colors';

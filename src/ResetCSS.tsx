@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { css, Global } from '@emotion/react';
 
-const ResetCSS = createGlobalStyle`
+const ResetCSS = css`
   /* prettier-ignore */
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -28,8 +28,8 @@ const ResetCSS = createGlobalStyle`
     display: block;
   }
   body {
-    line-height: 1;
     font-size: 16px;
+    line-height: 1;
   }
   ol,
   ul {
@@ -44,7 +44,7 @@ const ResetCSS = createGlobalStyle`
   blockquote:after,
   q:before,
   q:after {
-    content: "";
+    content: '';
     content: none;
   }
   table {
@@ -55,7 +55,7 @@ const ResetCSS = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-  [role="button"] {
+  [role='button'] {
     cursor: pointer;
   }
   *,
@@ -71,40 +71,39 @@ const ResetCSS = createGlobalStyle`
 
   button {
     padding: 0.5em 1em;
-    border: none;
     background: none;
+    border: none;
   }
 
   /* Number */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+    -webkit-appearance: none;
   }
-  input[type=number] {
+  input[type='number'] {
     -moz-appearance: textfield;
   }
 
-  /* Slider */ 
-  input[type=range] {
-    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 100%; /* Specific width is required for Firefox. */
-    background: transparent; /* Otherwise white in Chrome */
-  }
-  input[type=range]::-webkit-slider-thumb {
+  /* Slider */
+  input[type='range'] {
+    width: 100%;
+    background: transparent;
     -webkit-appearance: none;
   }
-  input[type=range]:focus {
-    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
   }
-  input[type=range]::-ms-track {
+  input[type='range']:focus {
+    outline: none;
+  }
+  input[type='range']::-ms-track {
     width: 100%;
-    cursor: pointer;
-    /* Hides the slider so custom styles can be added */
-    background: transparent; 
-    border-color: transparent;
     color: transparent;
-  }  
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+  }
 `;
 
-export default ResetCSS;
+export default () => <Global styles={ResetCSS} />;

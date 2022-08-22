@@ -1,51 +1,97 @@
-import type { HTMLMotionProps } from 'framer-motion';
 import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
-import styled, { css } from 'styled-components';
-import type { TypographyProps } from 'styled-system';
+import type {
+  BackgroundProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  TypographyProps,
+} from 'styled-system';
+import { background, layout, position, space, typography } from 'styled-system';
 
-import type { BaseProps } from '../base';
-import { baseCss } from '../base';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-export interface ButtonProps extends BaseProps, TypographyProps {
-  icon?: ReactNode;
-  loading?: boolean;
+import type { Colors } from '../../theme';
+
+export interface ButtonProps
+  extends PositionProps,
+    LayoutProps,
+    SpaceProps,
+    TypographyProps,
+    BackgroundProps {
   circle?: boolean;
-  variant?: 'default' | 'ghost' | 'dashed' | 'text';
+  color?: keyof Omit<Colors, 'generate'>;
+  textColor?: keyof Omit<Colors, 'generate'>;
+  variant?: 'primary' | 'ghost' | 'text';
 }
 
-const BaseButton = styled(motion.button)<ButtonProps>(({ circle, variant, theme }) => [
-  baseCss,
-  css`
-    border-width: 1px;
-    border-color: #000;
-    transition-duration: ${theme.duration};
-  `,
-  circle &&
+export const Button = styled(motion.button)<ButtonProps>(
+  ({ circle = false, color = 'blue', textColor, variant = 'primary', theme }) => [
     css`
-      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.5em;
+      font-size: 14px;
+      cursor: pointer;
+      transition-duration: ${theme.duration}s;
+
+      :disabled {
+        cursor: not-allowed;
+      }
     `,
-  variant === 'ghost' &&
-    css`
-      border-style: solid;
-    `,
-  variant === 'dashed' &&
-    css`
-      border-style: dashed;
-    `,
-]);
+    circle &&
+      css`
+        border-radius: 2em;
+      `,
+    variant === 'primary' &&
+      css`
+        color: ${theme.colors[textColor || 'white']};
+        background-color: ${theme.colors[color]};
+        border-width: 1px;
+        border-style: solid;
+        border-color: ${theme.colors[color]};
 
-const TextButton = styled(BaseButton)`
-  padding: 0;
-`;
+        :hover {
+          background-color: ${theme.colors.generate(theme.colors[color])[6]};
+          border-color: ${theme.colors.generate(theme.colors[color])[6]};
+        }
 
-export const Button: React.FC<HTMLMotionProps<'button'> & ButtonProps> = (props) => {
-  const { variant, children, ...rest } = props;
+        :disabled {
+          background-color: ${theme.colors.generate(theme.colors[color])[3]};
+          border-color: ${theme.colors.generate(theme.colors[color])[3]};
+        }
+      `,
+    variant === 'ghost' &&
+      css`
+        color: ${theme.colors[textColor || color]};
+        border-width: 1px;
+        border-style: solid;
+        border-color: ${theme.colors[color]};
 
-  if (variant === 'text') return <TextButton {...rest}>{children}</TextButton>;
+        :hover {
+          color: ${theme.colors.generate(theme.colors[textColor || color])[6]};
+          border-color: ${theme.colors.generate(theme.colors[color])[6]};
+        }
 
-  return <BaseButton {...rest}>{children}</BaseButton>;
-};
-Button.defaultProps = {
-  variant: 'default',
-};
+        :disabled {
+          color: ${theme.colors.generate(theme.colors[textColor || color])[3]};
+          border-color: ${theme.colors.generate(theme.colors[color])[3]};
+        }
+      `,
+    variant === 'text' &&
+      css`
+        padding: 0;
+        color: ${theme.colors[textColor || color]};
+
+        :hover {
+          color: ${theme.colors.generate(theme.colors[textColor || color])[6]};
+        }
+
+        :disabled {
+          color: ${theme.colors.generate(theme.colors[textColor || color])[3]};
+        }
+      `,
+  ],
+  [position, layout, space, typography, background],
+);
