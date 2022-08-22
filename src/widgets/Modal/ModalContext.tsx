@@ -5,7 +5,7 @@ import type { PropsWithChildren } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BodyLock, Box, Overlay } from '../../components';
+import { BodyLock, FlexColumn, Overlay } from '../../components';
 
 import type { Handler } from './types';
 
@@ -19,10 +19,7 @@ interface ModalsContext {
   setCloseOnOverlayClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ModalWrapper = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+const ModalWrapper = styled(FlexColumn)`
   align-items: center;
   position: fixed;
   top: 0;

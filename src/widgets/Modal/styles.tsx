@@ -46,6 +46,7 @@ export const ModalBackButton: React.FC<{ onBack: ModalProps['onBack'] }> = ({ on
 export const ModalContainer = styled(Box)`
   position: relative;
   overflow: hidden;
+  margin-top: 20vh;
   background: ${({ theme }) => theme.colors.modal};
   box-shadow: ${({ theme }) => theme.shadows.modal};
   border-radius: ${({ theme }) => theme.radii.modal};

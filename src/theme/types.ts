@@ -17,11 +17,13 @@ export type Spacing = number[];
 export type Radii = {
   // 圆角
   modal: string;
+  dropdown: string;
 };
 
 export type Shadows = {
   // 阴影
   modal: string;
+  dropdown: string;
 };
 
 export type Gradients = {

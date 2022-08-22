@@ -29,12 +29,14 @@ export const mediaQueries: MediaQueries = {
 
 export const shadows: Shadows = {
   modal: '0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05)',
+  dropdown: '0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05)',
 };
 
 export const spacing: Spacing = [0, 4, 8, 16, 24, 32, 48, 64];
 
 export const radii: Radii = {
   modal: '24px',
+  dropdown: '12px',
 };
 
 export const zIndices: ZIndices = {
