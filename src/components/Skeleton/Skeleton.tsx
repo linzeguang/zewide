@@ -4,7 +4,6 @@ import { background, borderRadius, compose, layout, space } from 'styled-system'
 
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import shouldForwardProp from '@styled-system/should-forward-prop';
 
 export interface SkeletonProps extends SpaceProps, LayoutProps, BackgroundProps, BorderRadiusProps {
   // color?: keyof Omit<Colors, 'generate'>;
@@ -20,7 +19,7 @@ const skeletonAnimate = keyframes`
   } 
 `;
 
-export const Skeleton = styled(motion.div, { shouldForwardProp })<SkeletonProps>(
+export const Skeleton = styled(motion.div)<SkeletonProps>(
   ({ circle = false }) => [
     css`
       display: inline-flex;

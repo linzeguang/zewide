@@ -10,7 +10,6 @@ import { background, compose, layout, position, space, typography } from 'styled
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import shouldForwardProp from '@styled-system/should-forward-prop';
 
 import type { Colors } from '../../theme';
 
@@ -26,7 +25,7 @@ export interface ButtonProps
   variant?: 'primary' | 'ghost' | 'text';
 }
 
-export const Button = styled(motion.button, { shouldForwardProp })<ButtonProps>(
+export const Button = styled(motion.button)<ButtonProps>(
   ({ circle = false, color = 'blue', textColor, variant = 'primary', theme }) => [
     css`
       display: flex;

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import shouldForwardProp from '@styled-system/should-forward-prop';
 
 import type { Colors } from '../../theme';
 
@@ -14,7 +13,7 @@ export interface DividerProps {
   height?: string;
 }
 
-export const Divider = styled(motion.div, { shouldForwardProp })<DividerProps>(
+export const Divider = styled(motion.div)<DividerProps>(
   ({ theme, color = 'grey', type = 'horizontal', dashed = false, width = '1px', height }) => [
     css`
       border-color: ${theme.colors[color]};
