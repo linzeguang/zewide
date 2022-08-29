@@ -11,18 +11,20 @@ import url from '@rollup/plugin-url';
 import pkg from './package.json';
 
 export default {
-  globals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
-  external: ['react', 'react-dom'],
+  // globals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM',
+  // },
+  // external: ['react', 'react-dom'],
   input: 'src/index.ts',
   output: [
     { file: pkg.main, format: 'cjs' },
     { file: pkg.module, format: 'es' },
   ],
   plugins: [
-    typescript(),
+    typescript({
+      declaration: false,
+    }),
     del({ targets: 'dist/*' }),
     babel({
       exclude: '**/node_modules/**',
