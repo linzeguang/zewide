@@ -22,9 +22,7 @@ export default {
     { file: pkg.module, format: 'es' },
   ],
   plugins: [
-    typescript({
-      declaration: false,
-    }),
+    typescript(),
     del({ targets: 'dist/*' }),
     babel({
       exclude: '**/node_modules/**',

@@ -82,7 +82,7 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
               <BodyLock />
               <Overlay onClick={handleOverlayDismiss} />
               {React.isValidElement(modalNode) &&
-                React.cloneElement<{ onDismiss: ModalsContext['onDismiss'] }>(modalNode, {
+                React.cloneElement(modalNode, {
                   onDismiss: handleDismiss,
                 })}
             </ModalWrapper>
