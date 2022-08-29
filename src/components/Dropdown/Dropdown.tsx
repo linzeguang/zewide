@@ -45,7 +45,7 @@ export const Dropdown = React.forwardRef<DropdownHandle, React.PropsWithChildren
     const { placement = 'left', target, children } = props;
     const [visible, toggle] = useState(false);
 
-    useImperativeHandle(ref, () => ({ toggle: toggle }), [toggle]);
+    useImperativeHandle(ref, () => ({ visible, toggle }), [visible]);
 
     return (
       <Container onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
