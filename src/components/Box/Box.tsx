@@ -9,6 +9,7 @@ import type {
 import { background, color, layout, position, space } from 'styled-system';
 
 import styled from '@emotion/styled';
+import shouldForwardProp from '@styled-system/should-forward-prop';
 
 export interface BoxProps
   extends PositionProps,
@@ -17,7 +18,7 @@ export interface BoxProps
     BackgroundProps,
     ColorProps {}
 
-export const Box = styled(motion.div)<BoxProps>`
+export const Box = styled(motion.div, { shouldForwardProp })<BoxProps>`
   ${position}
   ${layout}
   ${space}
