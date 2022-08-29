@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useImperativeHandle, useState } from 'react';
 
 import { AnimatePresence, domMax, LazyMotion } from 'framer-motion';
 
@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 import { Box } from '../Box';
 
-import type { DropdownProps, Placement } from './types';
+import type { DropdownHandle, DropdownProps, Placement } from './types';
 
 const getPlacement = (placement: Placement) => {
   switch (placement) {
@@ -25,7 +25,6 @@ const DropdownContent = styled(Box)<{ placement: Placement }>`
   ${({ placement }) => getPlacement(placement)}
   max-height: 400px;
   padding-top: 4px;
-  overflow-y: auto;
   transform-origin: top center;
 `;
 
@@ -41,20 +40,22 @@ const Container = styled(Box)`
   display: inline-block;
 `;
 
-export const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = ({
-  placement = 'left',
-  target,
-  children,
-}) => {
-  const [visible, toggle] = useState(false);
-  return (
-    <Container onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
-      {target}
-      <LazyMotion features={domMax}>
-        <AnimatePresence>
-          {visible && <DropdownContent placement={placement}>{children}</DropdownContent>}
-        </AnimatePresence>
-      </LazyMotion>
-    </Container>
-  );
-};
+export const Dropdown = React.forwardRef<DropdownHandle, React.PropsWithChildren<DropdownProps>>(
+  (props, ref) => {
+    const { placement = 'left', target, children } = props;
+    const [visible, toggle] = useState(false);
+
+    useImperativeHandle(ref, () => ({ toggle: toggle }), [toggle]);
+
+    return (
+      <Container onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
+        {target}
+        <LazyMotion features={domMax}>
+          <AnimatePresence>
+            {visible && <DropdownContent placement={placement}>{children}</DropdownContent>}
+          </AnimatePresence>
+        </LazyMotion>
+      </Container>
+    );
+  },
+);

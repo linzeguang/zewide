@@ -7,3 +7,7 @@ export interface PlacementProps {
 export interface DropdownProps extends PlacementProps {
   target: React.ReactElement;
 }
+
+export interface DropdownHandle {
+  toggle: React.Dispatch<React.SetStateAction<boolean>>;
+}
