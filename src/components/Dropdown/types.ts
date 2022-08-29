@@ -9,5 +9,6 @@ export interface DropdownProps extends PlacementProps {
 }
 
 export interface DropdownHandle {
+  visible: boolean;
   toggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
