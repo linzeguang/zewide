@@ -6,7 +6,7 @@ import type {
   SpaceProps,
   TypographyProps,
 } from 'styled-system';
-import { background, layout, position, space, typography } from 'styled-system';
+import { background, compose, layout, position, space, typography } from 'styled-system';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -93,5 +93,5 @@ export const Button = styled(motion.button)<ButtonProps>(
         }
       `,
   ],
-  [position, layout, space, typography, background],
+  compose(position, layout, space, typography, background),
 );
