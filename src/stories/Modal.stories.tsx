@@ -1,7 +1,16 @@
+import styled from '@emotion/styled';
 import type { ComponentMeta } from '@storybook/react';
 
 import { Box, Button } from '../components';
 import { Modal, useModal } from '../widgets';
+
+const StyledBox = styled(Box)`
+  height: 200px;
+  background-color: black;
+  ${Button} {
+    width: 500px;
+  }
+`;
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -13,8 +22,8 @@ export const Template = () => {
   const [onPresent] = useModal(<Modal title="这里是modal header">这里是modal contents</Modal>);
 
   return (
-    <Box>
+    <StyledBox>
       <Button onClick={onPresent}>onPresent</Button>
-    </Box>
+    </StyledBox>
   );
 };

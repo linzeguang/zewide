@@ -29,6 +29,7 @@ export default {
     babel({
       exclude: '**/node_modules/**',
       babelHelpers: 'bundled',
+      babelrc: true,
     }),
     commonjs(),
     filesize(),
