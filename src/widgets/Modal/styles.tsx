@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { motion } from 'framer-motion';
+
 import styled from '@emotion/styled';
 
 import { ArrowLeft, Box, Button, Close, FlexRow } from '../../components';
@@ -13,8 +15,9 @@ export const ModalHeader = styled(FlexRow)`
 `;
 
 export const ModalTitle = styled(FlexRow)`
-  align-items: center;
   flex: 1;
+  align-items: center;
+  font-weight: bold;
 `;
 
 export const ModalBody = styled(Box)`
@@ -33,7 +36,7 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps['onDismiss'] }> 
     onClick={onDismiss}
     aria-label="Close the dialog"
   >
-    <Close width="24" height="24" color="primary" />
+    <Close width="24" height="24" className="modal-close" />
   </Button>
 );
 
@@ -43,7 +46,7 @@ export const ModalBackButton: React.FC<{ onBack: ModalProps['onBack'] }> = ({ on
   </Button>
 );
 
-export const ModalContainer = styled(Box)`
+export const ModalContainer = styled(motion.div)`
   position: relative;
   overflow: hidden;
   margin-top: 20vh;

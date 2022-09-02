@@ -27,18 +27,20 @@ const Modal: React.FC<ModalProps & HTMLMotionProps<'div'>> = (props) => {
     children,
     hideCloseButton = false,
     bodyPadding = '24px',
-    width = '320px',
+    width = '500px',
     onDismiss,
     onBack,
     ...rest
   } = props;
   return (
-    <ModalContainer width={width} {...rest}>
+    <ModalContainer style={{ width }} {...rest}>
       {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
       <ModalHeader>
         <ModalTitle>
           {onBack && <ModalBackButton onBack={onBack} />}
-          <Typography fontSize={20}>{title}</Typography>
+          <Typography fontSize={20} className="modal-title">
+            {title}
+          </Typography>
         </ModalTitle>
       </ModalHeader>
       <ModalBody p={bodyPadding}>{children}</ModalBody>

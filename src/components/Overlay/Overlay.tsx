@@ -1,8 +1,8 @@
+import { motion } from 'framer-motion';
+
 import styled from '@emotion/styled';
 
-import { Box } from '../Box';
-
-export const Overlay = styled(Box)`
+export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0px;
   left: 0px;
