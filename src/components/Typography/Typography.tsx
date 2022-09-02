@@ -17,7 +17,7 @@ export interface TypographyProps extends LayoutProps, SpaceProps, TextProps, Col
 
 export const Typography = styled(motion.div)<TypographyProps>`
   font-size: initial;
-  line-height: 1.5;
+  line-height: 1;
   ${({ textTransform }) => textTransform && `text-transform: ${textTransform};`}
   ${({ ellipsis }) =>
     ellipsis &&

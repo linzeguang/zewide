@@ -18,7 +18,6 @@ export const ModalTitle = styled(FlexRow)`
   flex: 1;
   align-items: center;
   font-weight: bold;
-  line-height: 1;
 `;
 
 export const ModalBody = styled(Box)`
