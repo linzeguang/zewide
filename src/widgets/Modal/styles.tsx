@@ -11,13 +11,14 @@ import type { ModalProps } from './types';
 export const ModalHeader = styled(FlexRow)`
   align-items: center;
   display: flex;
-  padding: 12px 56px 12px 24px;
+  padding: 24px 56px 12px 24px;
 `;
 
 export const ModalTitle = styled(FlexRow)`
   flex: 1;
   align-items: center;
   font-weight: bold;
+  line-height: 1;
 `;
 
 export const ModalBody = styled(Box)`
@@ -31,12 +32,12 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps['onDismiss'] }> 
   <Button
     variant="text"
     position="absolute"
-    top="16px"
-    right="16px"
+    top="24px"
+    right="24px"
     onClick={onDismiss}
     aria-label="Close the dialog"
   >
-    <Close width="24" height="24" className="modal-close" />
+    <Close width="20" height="20" className="modal-close" />
   </Button>
 );
 
