@@ -76,6 +76,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/styled-system__should-forward-prop": "^5.1.2",
     "@umijs/fabric": "^3.0.0",
+    "@web3-react/types": "^8.0.20-beta.0",
     "babel-loader": "^8.2.5",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "rollup": "^2.78.0",
