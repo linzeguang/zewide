@@ -35,7 +35,7 @@ DropdownContent.defaultProps = {
   exit: { scaleY: 0, opacity: 0 },
 };
 
-const Container = styled(Box)`
+const Wrapper = styled(Box)`
   position: relative;
   display: inline-block;
 `;
@@ -48,14 +48,14 @@ export const Dropdown = React.forwardRef<DropdownHandle, React.PropsWithChildren
     useImperativeHandle(ref, () => ({ visible, toggle }), [visible]);
 
     return (
-      <Container onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
+      <Wrapper onMouseEnter={() => toggle(true)} onMouseLeave={() => toggle(false)}>
         {target}
         <LazyMotion features={domMax}>
           <AnimatePresence>
             {visible && <DropdownContent placement={placement}>{children}</DropdownContent>}
           </AnimatePresence>
         </LazyMotion>
-      </Container>
+      </Wrapper>
     );
   },
 );
