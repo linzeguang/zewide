@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { HTMLMotionProps } from 'framer-motion';
+import type { PropsWithChildren } from 'react';
 
 import { Typography } from '../../components';
 
@@ -21,7 +21,7 @@ ModalContainer.defaultProps = {
   exit: { translateY: 40, opacity: 0 },
 };
 
-const Modal: React.FC<ModalProps & HTMLMotionProps<'div'>> = (props) => {
+const Modal: React.FC<PropsWithChildren<ModalProps>> = (props) => {
   const {
     title,
     children,
@@ -30,10 +30,9 @@ const Modal: React.FC<ModalProps & HTMLMotionProps<'div'>> = (props) => {
     width = '500px',
     onDismiss,
     onBack,
-    ...rest
   } = props;
   return (
-    <ModalContainer style={{ width }} {...rest}>
+    <ModalContainer style={{ width }}>
       {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
       <ModalHeader>
         <ModalTitle>
