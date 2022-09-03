@@ -42,7 +42,7 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps['onDismiss'] }> 
     onClick={onDismiss}
     aria-label="Close the dialog"
   >
-    <Close width="20" height="20" className="modal-close" />
+    <Close width="24" height="24" className="modal-close" />
   </Button>
 );
 
