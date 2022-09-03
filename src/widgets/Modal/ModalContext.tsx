@@ -21,6 +21,7 @@ interface ModalsContext {
 
 const ModalWrapper = styled(FlexColumn)`
   align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   right: 0;
