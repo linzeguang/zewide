@@ -1,14 +1,12 @@
 import { ThemeProvider } from '@emotion/react';
-import { ModalProvider, MotionProvider, ResetCSS, theme } from '../src';
+import { ModalProvider, ResetCSS, theme } from '../src';
 
 const globalDecorator = (StoryFn) => (
   <ThemeProvider theme={theme}>
     <ResetCSS />
-    <MotionProvider>
-      <ModalProvider>
-        <StoryFn />
-      </ModalProvider>
-    </MotionProvider>
+    <ModalProvider>
+      <StoryFn />
+    </ModalProvider>
   </ThemeProvider>
 );
 

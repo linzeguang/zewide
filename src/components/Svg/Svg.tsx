@@ -5,4 +5,6 @@ import styled from '@emotion/styled';
 
 export type SvgProps = SVGMotionProps<SVGSVGElement>;
 
-export const Svg = styled(motion.svg)<SvgProps>``;
+export const Svg = styled(motion.svg)<SvgProps>`
+  transform-origin: center !important;
+`;

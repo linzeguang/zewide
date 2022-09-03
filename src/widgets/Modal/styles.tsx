@@ -25,6 +25,12 @@ export const ModalBody = styled(Box)`
   overflow-y: auto;
 `;
 
+Close.defaultProps = {
+  transition: { ease: 'easeInOut' },
+  initial: { rotate: -90 },
+  animate: { rotate: 0 },
+  exit: { rotate: -90 },
+};
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps['onDismiss'] }> = ({
   onDismiss,
 }) => (
