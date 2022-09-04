@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useCallback, useState } from 'react';
 
 import { AnimatePresence, domMax, LazyMotion } from 'framer-motion';
 import type { PropsWithChildren } from 'react';
@@ -16,6 +16,7 @@ interface ModalsContext {
   setModalNode: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   onPresent: (node: React.ReactNode, newNodeId: string) => void;
   onDismiss: Handler;
+  setAfterEvent: React.Dispatch<React.SetStateAction<[Handler, Handler] | undefined>>;
   setCloseOnOverlayClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -30,39 +31,48 @@ const ModalWrapper = styled(FlexColumn)`
   z-index: ${({ theme }) => theme.zIndices.modal - 1};
 `;
 
-export const Context = createContext<ModalsContext>({
+const initialValue: ModalsContext = {
   isOpen: false,
   nodeId: '',
   modalNode: null,
   setModalNode: () => null,
   onPresent: () => null,
   onDismiss: () => null,
+  setAfterEvent: () => undefined,
   setCloseOnOverlayClick: () => true,
-});
+};
+
+export const Context = createContext<ModalsContext>(initialValue);
 
 const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalNode, setModalNode] = useState<React.ReactNode>();
   const [nodeId, setNodeId] = useState('');
   const [closeOnOverlayClick, setCloseOnOverlayClick] = useState(true);
+  const [afterEvent, setAfterEvent] = useState<[Handler, Handler]>();
 
-  const handlePresent = (node: React.ReactNode, newNodeId: string) => {
-    setModalNode(node);
-    setIsOpen(true);
-    setNodeId(newNodeId);
-  };
+  const handlePresent = useCallback(
+    (node: React.ReactNode, newNodeId: string) => {
+      setModalNode(node);
+      setIsOpen(true);
+      setNodeId(newNodeId);
+      if (afterEvent && afterEvent[0]) afterEvent[0]();
+    },
+    [afterEvent],
+  );
 
-  const handleDismiss = () => {
+  const handleDismiss = useCallback(() => {
     setModalNode(undefined);
     setIsOpen(false);
     setNodeId('');
-  };
+    if (afterEvent && afterEvent[1]) afterEvent[1]();
+  }, [afterEvent]);
 
-  const handleOverlayDismiss = () => {
+  const handleOverlayDismiss = useCallback(() => {
     if (closeOnOverlayClick) {
       handleDismiss();
     }
-  };
+  }, [closeOnOverlayClick, handleDismiss]);
 
   return (
     <Context.Provider
@@ -73,6 +83,7 @@ const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setModalNode,
         onPresent: handlePresent,
         onDismiss: handleDismiss,
+        setAfterEvent,
         setCloseOnOverlayClick,
       }}
     >

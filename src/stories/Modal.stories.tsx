@@ -19,7 +19,7 @@ export default {
 } as ComponentMeta<typeof Modal>;
 
 export const Template = () => {
-  const [onPresent] = useModal(<Modal title="这里是modal header">这里是modal contents</Modal>);
+  const [onPresent] = useModal(<Modal title="这里是modal header">这里是modal contents </Modal>);
 
   return (
     <StyledBox>
