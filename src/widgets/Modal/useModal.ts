@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 
 import get from 'lodash/get';
 import type React from 'react';
@@ -11,18 +11,9 @@ const useModal = (
   closeOnOverlayClick = true,
   updateOnPropsChange = false,
   modalId = 'defaultNodeId',
-): [Handler, Handler, boolean] => {
-  const {
-    isOpen,
-    nodeId,
-    modalNode,
-    setModalNode,
-    onPresent,
-    onDismiss,
-    setAfterEvent,
-    setCloseOnOverlayClick,
-  } = useContext(Context);
-  const [visible, toggleVisible] = useState(isOpen);
+): [Handler, Handler, boolean, string] => {
+  const { isOpen, nodeId, modalNode, setModalNode, onPresent, onDismiss, setCloseOnOverlayClick } =
+    useContext(Context);
 
   const onPresentCallback = useCallback(() => {
     onPresent(modal, modalId);
@@ -57,11 +48,10 @@ const useModal = (
   }, [updateOnPropsChange, nodeId, modalId, isOpen, modal, modalNode, setModalNode]);
 
   useEffect(() => {
-    setAfterEvent([() => toggleVisible(true), () => toggleVisible(false)]);
     setCloseOnOverlayClick(closeOnOverlayClick);
-  }, [closeOnOverlayClick, setAfterEvent, setCloseOnOverlayClick]);
+  }, [closeOnOverlayClick, setCloseOnOverlayClick]);
 
-  return [onPresentCallback, onDismissCallback, visible];
+  return [onPresentCallback, onDismissCallback, isOpen, nodeId];
 };
 
 export default useModal;
