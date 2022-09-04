@@ -1,7 +1,7 @@
 /*
  * @Author: linzeguang
  * @Date: 2022-08-14 13:42:40
- * @LastEditTime: 2022-09-04 21:00:45
+ * @LastEditTime: 2022-09-04 21:05:19
  * @LastEditors: linzeguang
  * @Description:
  */
@@ -13,7 +13,7 @@ import BigNumber from 'bignumber.js';
  * @param precision 精度，默认为6
  * @returns 千分位字符串
  */
-export function toThousand(val: BigNumber.Value, precision = 6, isRound: false) {
+export function toThousand(val: BigNumber.Value, precision = 6, isRound = false) {
   const num = new BigNumber(val);
   const precisionNum = new BigNumber(num.toFixed(precision, isRound ? undefined : 1));
 
